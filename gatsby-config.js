@@ -1,3 +1,7 @@
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
+
 module.exports = {
   siteMetadata: {
     title: "gatsby-shopify-store",
@@ -6,19 +10,20 @@ module.exports = {
     {
       resolve: "gatsby-source-shopify",
       options: {
-        shopName: "lojasgaucha-dev",
-        accessToken: "76a27f75921e1405de4fbe99835f5062",
+        shopName: process.env.SHOP_NAME,
+        // deepcode ignore HardcodedNonCryptoSecret: <please specify a reason of ignoring this>
+        accessToken: process.env.SHOPIFY_ACCESS_TOKEN,
       },
     },
     "gatsby-plugin-styled-components",
     "gatsby-plugin-gatsby-cloud",
     "gatsby-plugin-image",
-    {
-      resolve: "gatsby-plugin-google-analytics",
-      options: {
-        trackingId: "",
-      },
-    },
+    // {
+    //   resolve: "gatsby-plugin-google-analytics",
+    //   options: {
+    //     trackingId: "",
+    //   },
+    // },
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-sitemap",
     {
